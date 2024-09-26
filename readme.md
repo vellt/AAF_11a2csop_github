@@ -5,121 +5,183 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp1
+namespace ConsoleApp25
 {
     class Program
     {
         static void Main(string[] args)
         {
-            double A, V, a;
-
-            Console.WriteLine("Add meg az a értékét");
-            a = Convert.ToDouble(Console.ReadLine());
-
-            A = 6 * Math.Pow(a,2);
-            V = Math.Pow(a,3);
-
-            Console.WriteLine($"A: {Math.Round(A,4)}");
-            Console.WriteLine($"V: {V:0.0000}");
-
-            // ------------------------------------
-
-            double A, V, r, m;
-
-            Console.WriteLine("Add meg az r értékét");
-            r = Convert.ToDouble(Console.ReadLine());
-            Console.WriteLine("Add meg az m értékét");
-            m = Convert.ToDouble(Console.ReadLine());
-
-            A = 2 * Math.Pow(r, 2) * Math.PI + 2 * r * Math.PI;
-            V = Math.Pow(r, 2) * Math.PI * m;
-
-            Console.WriteLine($"A: {Math.Round(A,2)}");
-            Console.WriteLine($"V: {V:0.00}");
             
-            // ------------------------------------
+            int a, b;
+            Console.Write("Add meg az A értékét: ");
+            a = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Add meg az B értékét: ");
+            b = Convert.ToInt32(Console.ReadLine());
 
-            int x;
-            double kGy;
+            int osszeg = a + b;
+            int kulonbseg = a - b;
+            
+            Console.WriteLine($"{a} - {b} = {kulonbseg}");
+            Console.WriteLine($"{a} + {b} = {osszeg}");
+            
+            // -----------------------------------------------------
+            
+            int a, b;
+            Console.Write("Add meg az a értékét: ");
+            a = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Add meg az b értékét: ");
+            b = Convert.ToInt32(Console.ReadLine());
 
-            Console.WriteLine("Add meg az x értékét");
-            x = Convert.ToInt32(Console.ReadLine());
+            int szorzas = a * b;
+            double hanyados = (double)a / b;
 
-            kGy = Math.Pow(x,1/3.0);
+            Console.WriteLine($"{a} * {b} = {szorzas}");
+            Console.WriteLine($"{a} / {b} = {hanyados:0.00}");
 
-            Console.WriteLine($"kGy={Math.Round(kGy,3)}");
-           
-            // ------------------------------------
+            // -----------------------------------------------------
+            
+            int F, C;
+            Console.Write("Add meg az C értékét: ");
+            C = Convert.ToInt32(Console.ReadLine());
 
-            int db_20000, db_10000, db_5000, db_2000, db_1000, db_500;
-            Console.Write("20000: ");
-            db_20000 = Convert.ToInt32(Console.ReadLine());
+            F = (int)(C * (double)(9.0 / 5) + 32);
 
-            Console.Write("10000: ");
-            db_10000 = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine($"A {C} értéke átváltva Fahreheitra: {F}");
+            
+            // -----------------------------------------------------
 
-            Console.Write("5000: ");
-            db_5000 = Convert.ToInt32(Console.ReadLine());
+            int C, F;
+            Console.Write("Adj meg egy számot: ");
+            F = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write("2000: ");
-            db_2000 = Convert.ToInt32(Console.ReadLine());
+            C = (int)((F - 32) * 5 / 9.0);
 
-            Console.Write("1000: ");
-            db_1000 = Convert.ToInt32(Console.ReadLine());
-
-            Console.Write("500: ");
-            db_500 = Convert.ToInt32(Console.ReadLine());
-
-            int osszesen = 20_000 * db_20000 + 10_000 * db_10000 + 5_000 * db_5000 + 2_000 * db_2000 + 1_000 * db_1000 + 500 * db_500;
-            Console.WriteLine($"Összesen: {osszesen} ft");
-            Console.WriteLine($"Bónusz: {osszesen*0.03} ft"); // a bevétel 3%-a
-           
-            // ------------------------------------
-           
-            double a, b, c;
-            Console.Write("add meg az a értékét");
+            Console.WriteLine($"C: {C}");
+        
+            // -----------------------------------------------------
+        
+            double a, b, K, T;
+            Console.Write("Add meg az 'a' értékét: ");
             a = Convert.ToDouble(Console.ReadLine());
-            Console.Write("add meg a b értékét");
+            Console.Write("Add meg a 'b' értékét: ");
             b = Convert.ToDouble(Console.ReadLine());
 
-            c = Math.Sqrt(Math.Pow(a, 2) + Math.Pow(b, 2));
-            //c = Math.Pow(Math.Pow(a, 2) + Math.Pow(b, 2),1/2.0); // hatványazonossággal
+            K = 2 * (a + b);
+            T = a * b;
 
-            Console.WriteLine($"atfogo:{Math.Round(c, 2)} ");
+            Console.WriteLine($"A téglalap kerülete {K:0.0000}");
+            Console.WriteLine($"A téglalap területe {Math.Round(T,4)}");
+
+            // -----------------------------------------------------
+
+            double A, V, a;
+            Console.Write("Add meg az a értékét: ");
+            a = Convert.ToDouble(Console.ReadLine());
+
+            A = 6 * Math.Pow(a, 2);
+            V = Math.Pow(a, 3);
+
+            Console.WriteLine($"a = {a}, A= {Math.Round(A, 3)}, V = {Math.Round(V,3)}");
             
-            // ------------------------------------
+            // -----------------------------------------------------
 
-            Console.Write("Adj egy számot: ");
-            int szam = Convert.ToInt32(Console.ReadLine());
-            if (szam >= 0)
+            double A, V, a, b, c;
+            Console.Write("Add meg az a értékét: ");
+            a = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Add meg az b értékét: ");
+            b = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Add meg az c értékét: ");
+            c = Convert.ToDouble(Console.ReadLine());
+
+            A = 2 * (a * b) + 2 * (a * c) + 2 * (b * c);
+            V = a * b * c;
+
+            Console.WriteLine($"A téglatest kerülete: {Math.Round(A, 2)}");
+            Console.WriteLine($"A téglatest térfogata: {Math.Round(V, 2)}");
+
+            // -----------------------------------------------------
+            
+            // ilyen jellegű feladatra NEM kell számítani az első dogában, 
+            // érdekességnek szántam a modulusz felhasználási köre miatt, 
+            // ilyeneket használnak a pénztárak (pl tankoláskor a mol-nál..)
+            // mikor a kasszánál vagyunk és mondjuk, hogy készpénzzel fizetnénk:
+            Console.Write("Add meg az összeget: ");
+            string osszeg = Console.ReadLine();
+            char utolsoKarakter = osszeg[osszeg.Length - 1];
+            int mod = Convert.ToInt32(utolsoKarakter.ToString()) % 5;
+            if (mod <= 2)
             {
-                Console.WriteLine("pozitív");
-            }
-            else if (szam < 0)
+                Console.WriteLine(Convert.ToInt32(osszeg) - mod);
+            } else
             {
-                Console.WriteLine("negatív");
-            }
-            else if (szam % 2 == 0)
-            {
-                Console.WriteLine("páros");
-            }
-            else if (szam % 2 != 0) 
-            {
-                Console.WriteLine("páratlan");
-            }else if(szam % 3 == 0)
-            {
-                // osztója a 3 a számnak
-                Console.WriteLine($"{szam}-ot osztja a 3 maradék nélkül");
-            }
-            else if(szam % 5 !=0)
-            {
-                Console.WriteLine($"az 5 nem osztója a {szam}-nak");
+                Console.WriteLine(Convert.ToInt32(osszeg) - mod + 5);
             }
 
+            // -----------------------------------------------------
 
-            Console.ReadKey(); // azért kell, hogy ne záródjon be a program, ha lefut
+            int a;
+            Console.Write("Írj be egy számot: ");
+            a = Convert.ToInt32(Console.ReadLine());
+            if (a == 0)
+            {
+                Console.WriteLine("Ez a szám 0");
+            }
+            else if (a % 2 == 0)
+            {
+                Console.WriteLine("Ez a szám pozitív");
+            }
+            else if (a % 2 != 0)
+            {
+                Console.WriteLine("Ez a szám negatív");
+            }
+
+            // -----------------------------------------------------
+
+            int a;
+            Console.WriteLine("adj meg egy számot: ");
+            a = Convert.ToInt32(Console.ReadLine());
+            if (a % 3 == 0)
+            {
+                Console.WriteLine("Ez a szám osztólya 3-nak ");
+            }
+            else
+            {
+                Console.WriteLine("Ez a szám nem osztólay 3-nak");
+            }
+            
+            // -----------------------------------------------------
+
+            int x, y;
+            Console.WriteLine("Add meg a koordináta x értékét: ");
+            x = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine("Add meg a koordináta y értékét: ");
+            y = Convert.ToInt32(Console.ReadLine());
+
+            if (x > 0 && y > 0)
+            {
+                Console.WriteLine("A koordináta az első síkban van");
+            }
+            else if(x < 0 && y < 0)
+            {
+                Console.WriteLine("A harmadik síkban van");
+            }
+            else if (x > 0 && y < 0)
+            {
+                Console.WriteLine("A negyedik síkban van");
+            }
+            else if (x < 0 && y > 0)
+            {
+                Console.WriteLine("A második síkban van");
+            }
+            else 
+            { 
+                Console.WriteLine("Az origon van :/ "); 
+            }
+
+            Console.ReadKey();
 
         }
+    
     }
 }
 
