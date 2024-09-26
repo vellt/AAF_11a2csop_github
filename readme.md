@@ -143,11 +143,11 @@ namespace ConsoleApp25
             a = Convert.ToInt32(Console.ReadLine());
             if (a % 3 == 0)
             {
-                Console.WriteLine("Ez a szám osztólya 3-nak ");
+                Console.WriteLine("Ez a szám osztólya 3-nak maradék nélkül");
             }
             else
             {
-                Console.WriteLine("Ez a szám nem osztólay 3-nak");
+                Console.WriteLine("Ez a szám nem osztólay 3-nak maradék nélkül");
             }
             
             // -----------------------------------------------------
