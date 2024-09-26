@@ -44,7 +44,7 @@ namespace ConsoleApp25
             Console.Write("Add meg az C értékét: ");
             C = Convert.ToInt32(Console.ReadLine());
 
-            F = (int)(C * (double)(9.0 / 5) + 32);
+            F = (int)(C * (9.0 / 5) + 32);
 
             Console.WriteLine($"A {C} értéke átváltva Fahreheitra: {F}");
             
