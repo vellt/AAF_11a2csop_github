@@ -112,7 +112,8 @@ namespace ConsoleApp25
             if (mod <= 2)
             {
                 Console.WriteLine(Convert.ToInt32(osszeg) - mod);
-            } else
+            }
+            else
             {
                 Console.WriteLine(Convert.ToInt32(osszeg) - mod + 5);
             }
