@@ -5,183 +5,144 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp25
+namespace ConsoleApp28
 {
     class Program
     {
         static void Main(string[] args)
         {
+            // random számok generálása
+            Random r = new Random();
+            int szam= r.Next(100);
+            int szam2 = r.Next(101) - 50; //[-50,50]
+            int szam3 = r.Next(6) + 2; // [2,6]
+            int szam4 = r.Next(3) + 8; //[8,10]
+            int szam5 = r.Next(81); //[0,80]
+            int szam6 = r.Next(21)-20; // [-20, 0]
+            int szam7 = r.Next(11) -20; //[-20, -10]
+            int szam8 = r.Next(71) -50; //[-50, 20]
+            // van két paraméteres next is, de azt mi nem fogjuk használni!
+            // csak jövőre!
+            int szam9 = r.Next(-30, 81); //[-30, 80]
+
+            // --------------------------------------------------------
+            // alap, kitevő bekérése, majd hatványozás elvégzése
+
+            Console.Write("Alap: ");
+            int alap = Convert.ToInt32(Console.ReadLine());
+            Console.Write("Kitevő: ");
+            int kitevo = Convert.ToInt32(Console.ReadLine());
+            double eredmeny = Math.Round(Math.Pow(alap, kitevo),2);
             
-            int a, b;
-            Console.Write("Add meg az A értékét: ");
+            //----------------------------------------------
+            // ciklusok
+
+            // 10x írja ki, hogy alma
+            int lepes = 0;
+            while (lepes!=10)
+            {
+                Console.WriteLine("alma");
+                lepes++;
+            }
+            
+            // 10-20ig írja ki a számokat
+            int szam = 10;
+            while (szam != 21)
+            {
+                Console.WriteLine($"{szam++}"); // postfixes értéknövelés
+            }
+
+            // ha postfixesen növelek egy számot kiíratáskor, előbb a régi értéket írja ki, majd
+            // megnöveli, pl Console.WriteLine($"{szam++}");
+
+            // ha prefixesen növelek egy számot kiíratáskor, előbb a megnövelt értéket írja már ki
+            // pl Console.WriteLine($"{++szam}");
+
+            // egyszerre kettő nem lehet (elől-hátul nem égetjük a gyertyát: ++szam++)
+
+            //-------------------------------------------------------------------
+            // a két szélső érték (a,b) között írjuk ki a páros számokat
+            int a,b;
+            Console.WriteLine("adj meg egy számot");
             a = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Add meg az B értékét: ");
+            Console.WriteLine("adj meg egy b értéket");
             b = Convert.ToInt32(Console.ReadLine());
 
-            int osszeg = a + b;
-            int kulonbseg = a - b;
+            while (a!=b)
+            {
+                a++;
+                if (a % 2 == 0) 
+                {
+                    Console.WriteLine(a);
+                }
+            }
+
+            //--------------------------------------------------------
+            // egy szám számjegyeinek lekérdezése-->kérjük be szövegesen
+            // mert akkor rendelkezésre áll nekünk a string tipusoknál egy olyan
+            // hogy length
+            Console.WriteLine("Adj egy számot");
+            string szam = Console.ReadLine();
+            Console.WriteLine(szam.Length); // 3 számjegyből áll pl a 107
+
+            // írjuk ki a számjegyeit egymás alá
+            Console.WriteLine(szam[0]);
+            Console.WriteLine(szam[1]);
+            Console.WriteLine(szam[2]);
+
+            // ööö de dinamikusan...
+            int i = 0;
+            while (i < szam.Length)
+            {
+                Console.WriteLine(szam[i]);
+                i++;
+            }
+
+            // számítsuk ki az éves középhőmérsékletet, de előtte kérjük be minden hónap átlag hőmérsékletét
+            int honap = 0;
+            double osszHomerseklet = 0;
+            while (honap<12)
+            {
+                Console.Write($"{honap+1}. hónap átlaga: ");
+                double homerseklet = Convert.ToDouble(Console.ReadLine());
+                osszHomerseklet += homerseklet;
+                honap++;
+            }
+            double atlag = osszHomerseklet / 12;
+            Console.WriteLine($"Éves középhőmérséklet: {atlag:0.00}");
             
-            Console.WriteLine($"{a} - {b} = {kulonbseg}");
-            Console.WriteLine($"{a} + {b} = {osszeg}");
-            
-            // -----------------------------------------------------
-            
-            int a, b;
-            Console.Write("Add meg az a értékét: ");
-            a = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Add meg az b értékét: ");
-            b = Convert.ToInt32(Console.ReadLine());
-
-            int szorzas = a * b;
-            double hanyados = (double)a / b;
-
-            Console.WriteLine($"{a} * {b} = {szorzas}");
-            Console.WriteLine($"{a} / {b} = {hanyados:0.00}");
-
-            // -----------------------------------------------------
-            
-            int F, C;
-            Console.Write("Add meg az C értékét: ");
-            C = Convert.ToInt32(Console.ReadLine());
-
-            F = (int)(C * (double)(9.0 / 5) + 32);
-
-            Console.WriteLine($"A {C} értéke átváltva Fahreheitra: {F}");
-            
-            // -----------------------------------------------------
-
-            int C, F;
-            Console.Write("Adj meg egy számot: ");
-            F = Convert.ToInt32(Console.ReadLine());
-
-            C = (int)((F - 32) * 5 / 9.0);
-
-            Console.WriteLine($"C: {C}");
-        
-            // -----------------------------------------------------
-        
-            double a, b, K, T;
-            Console.Write("Add meg az 'a' értékét: ");
-            a = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Add meg a 'b' értékét: ");
-            b = Convert.ToDouble(Console.ReadLine());
-
-            K = 2 * (a + b);
-            T = a * b;
-
-            Console.WriteLine($"A téglalap kerülete {K:0.0000}");
-            Console.WriteLine($"A téglalap területe {Math.Round(T,4)}");
-
-            // -----------------------------------------------------
-
-            double A, V, a;
-            Console.Write("Add meg az a értékét: ");
-            a = Convert.ToDouble(Console.ReadLine());
-
-            A = 6 * Math.Pow(a, 2);
-            V = Math.Pow(a, 3);
-
-            Console.WriteLine($"a = {a}, A= {Math.Round(A, 3)}, V = {Math.Round(V,3)}");
-            
-            // -----------------------------------------------------
-
-            double A, V, a, b, c;
-            Console.Write("Add meg az a értékét: ");
-            a = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Add meg az b értékét: ");
-            b = Convert.ToDouble(Console.ReadLine());
-            Console.Write("Add meg az c értékét: ");
-            c = Convert.ToDouble(Console.ReadLine());
-
-            A = 2 * (a * b) + 2 * (a * c) + 2 * (b * c);
-            V = a * b * c;
-
-            Console.WriteLine($"A téglatest kerülete: {Math.Round(A, 2)}");
-            Console.WriteLine($"A téglatest térfogata: {Math.Round(V, 2)}");
-
-            // -----------------------------------------------------
-            
-            // ilyen jellegű feladatra NEM kell számítani az első dogában, 
-            // érdekességnek szántam a modulusz felhasználási köre miatt, 
-            // ilyeneket használnak a pénztárak (pl tankoláskor a mol-nál..)
-            // mikor a kasszánál vagyunk és mondjuk, hogy készpénzzel fizetnénk:
-            Console.Write("Add meg az összeget: ");
-            string osszeg = Console.ReadLine();
-            char utolsoKarakter = osszeg[osszeg.Length - 1];
-            int mod = Convert.ToInt32(utolsoKarakter.ToString()) % 5;
-            if (mod <= 2)
+            // -----------------------------------------------------------------------
+            // validáljunk telefonszámokat, addig kérjük be a felhasználótól telefonszámot, amíg az hibás
+            // ha már valid telefonszámot adott meg a felhasználó, akkor írjuk ki milyen szolgáltatóhoz tartozik
+            // a dupla függőleges vonal '|' a logikai vagy.
+            // a '!=' az a nem egyenlő
+            // a telószám változó string, annak egy elemének a lehivatkozása pl teloszam[0] az karakter típust ad
+            // ezért vetem azokat össze Aposztrófok közötti szám karakterekkel pl teloszam[0]!='0'
+            Console.Write("telószám: ");
+            string teloszam = Console.ReadLine();
+            while (teloszam[0]!='0' || teloszam[1]!='6' || teloszam[3]!='0' || teloszam.Length!=11)
             {
-                Console.WriteLine(Convert.ToInt32(osszeg) - mod);
-            } else
-            {
-                Console.WriteLine(Convert.ToInt32(osszeg) - mod + 5);
+                Console.Write("telószám: ");
+                teloszam = Console.ReadLine();
             }
-
-            // -----------------------------------------------------
-
-            int a;
-            Console.Write("Írj be egy számot: ");
-            a = Convert.ToInt32(Console.ReadLine());
-            if (a == 0)
+            // egyszerű összehasonlító elágazás
+            // ha if-el lenne megírva ez pl teloszam[2]=='2' -vel lenne megírva 
+            switch (teloszam[2])
             {
-                Console.WriteLine("Ez a szám 0");
-            }
-            else if (a % 2 == 0)
-            {
-                Console.WriteLine("Ez a szám pozitív");
-            }
-            else if (a % 2 != 0)
-            {
-                Console.WriteLine("Ez a szám negatív");
-            }
-
-            // -----------------------------------------------------
-
-            int a;
-            Console.WriteLine("adj meg egy számot: ");
-            a = Convert.ToInt32(Console.ReadLine());
-            if (a % 3 == 0)
-            {
-                Console.WriteLine("Ez a szám osztólya 3-nak ");
-            }
-            else
-            {
-                Console.WriteLine("Ez a szám nem osztólay 3-nak");
-            }
-            
-            // -----------------------------------------------------
-
-            int x, y;
-            Console.WriteLine("Add meg a koordináta x értékét: ");
-            x = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("Add meg a koordináta y értékét: ");
-            y = Convert.ToInt32(Console.ReadLine());
-
-            if (x > 0 && y > 0)
-            {
-                Console.WriteLine("A koordináta az első síkban van");
-            }
-            else if(x < 0 && y < 0)
-            {
-                Console.WriteLine("A harmadik síkban van");
-            }
-            else if (x > 0 && y < 0)
-            {
-                Console.WriteLine("A negyedik síkban van");
-            }
-            else if (x < 0 && y > 0)
-            {
-                Console.WriteLine("A második síkban van");
-            }
-            else 
-            { 
-                Console.WriteLine("Az origon van :/ "); 
+                case '2':
+                    Console.WriteLine("Yettel");
+                    break;
+                case '3':
+                    Console.WriteLine("Telekom");
+                    break;
+                case '7':
+                    Console.WriteLine("Vodafon");
+                    break;
             }
 
             Console.ReadKey();
-
+            
         }
-    
     }
 }
 
