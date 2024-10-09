@@ -15,7 +15,7 @@ namespace ConsoleApp28
             Random r = new Random();
             int szam= r.Next(100);
             int szam2 = r.Next(101) - 50; //[-50,50]
-            int szam3 = r.Next(6) + 2; // [2,6]
+            int szam3 = r.Next(6) + 2; // [2,7]
             int szam4 = r.Next(3) + 8; //[8,10]
             int szam5 = r.Next(81); //[0,80]
             int szam6 = r.Next(21)-20; // [-20, 0]
