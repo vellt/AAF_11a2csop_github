@@ -5,143 +5,126 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp28
+namespace ConsoleApp35
 {
     class Program
     {
         static void Main(string[] args)
         {
-            // random számok generálása
+            // logikai kapuk
+            // és-->&&
+            // vagy-->||
             Random r = new Random();
-            int szam= r.Next(100);
-            int szam2 = r.Next(101) - 50; //[-50,50]
-            int szam3 = r.Next(6) + 2; // [2,6]
-            int szam4 = r.Next(3) + 8; //[8,10]
-            int szam5 = r.Next(81); //[0,80]
-            int szam6 = r.Next(21)-20; // [-20, 0]
-            int szam7 = r.Next(11) -20; //[-20, -10]
-            int szam8 = r.Next(71) -50; //[-50, 20]
-            // van két paraméteres next is, de azt mi nem fogjuk használni!
-            // csak jövőre!
-            int szam9 = r.Next(-30, 81); //[-30, 80]
-
-            // --------------------------------------------------------
-            // alap, kitevő bekérése, majd hatványozás elvégzése
-
-            Console.Write("Alap: ");
-            int alap = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Kitevő: ");
-            int kitevo = Convert.ToInt32(Console.ReadLine());
-            double eredmeny = Math.Round(Math.Pow(alap, kitevo),2);
-            
-            //----------------------------------------------
-            // ciklusok
-
-            // 10x írja ki, hogy alma
-            int lepes = 0;
-            while (lepes!=10)
+            int a = r.Next(71)+10; //[10,80]
+            int b = r.Next(71)+10; //[10,80]
+            int c = r.Next(71)+10; //[10,80]
+            if (a+b>c && b+c>a && c+a>b)
             {
-                Console.WriteLine("alma");
-                lepes++;
+                Console.WriteLine("szerkeszthető");
+            }
+            else
+            {
+                Console.WriteLine("nem szerkeszthető");
+            }
+
+            //---------------------------------------------------
+            // generáljunk egy számot [1,110] és döntsük el, hogy 
+            // vásárolhat az emberünk legót
+
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~");
+
+            Random r2 = new Random();
+            int kor= r2.Next(110) + 1; //[1,110]
+
+            if(kor>=6 && kor <= 99)
+            {
+                Console.WriteLine("megveheted a legot");
+            }
+            else if (kor>99)
+            {
+                Console.WriteLine("túl öreg vagy hozzá");
+            }
+            else
+            {
+                Console.WriteLine("te túl fiatal vagy!");
+            }
+
+            // ----------------------------------------------------------
+
+            // hármas operátor
+            // a hármas operátorral rövidíthető a kód
+            // abszolút érték, [-100, 100]
+
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~");
+
+            Random r3 = new Random();
+            int x= r3.Next(201) - 100;
+            // eredeti szám pl -4
+            Console.WriteLine(x);
+
+            // 1.0
+            if (x<0)
+            {
+                Console.WriteLine(x*-1); // a -4ből 4-es lesz
+            }
+            else
+            {
+                Console.WriteLine(x); // a 4ből 4 lesz
             }
             
-            // 10-20ig írja ki a számokat
-            int szam = 10;
-            while (szam != 21)
+            // 2.0
+            // ha az if vagy az else egy  valamit csinál a blokkon belül
+            // akkor az a blokk {} elhagyható!
+            if (x < 0) Console.WriteLine(x*-1);
+            else Console.WriteLine(x);
+
+            // 3.0 <-- hármas operátor
+            Console.WriteLine((x < 0) ? x * -1 : x);
+
+            //------------------------------------------------------------
+
+            // switch
+            // a switch csak összehasonlításra használható amikor if-ben ==-et használnánk
+
+            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+            // kő-papír
+            Random r4 = new Random();
+            int gep = r4.Next(3); // [0,2]
+            // 0 == kő, 1 == papír, 2 == olló
+            Console.WriteLine("Válaszd ki a fegyvered!");
+            Console.WriteLine("0 == kő, 1 == papír, 2 == olló");
+            Console.Write("Szám: ");
+            int felhasznalo = Convert.ToInt32(Console.ReadLine());
+            // kiírjuk ki mit választott
+            switch (gep)
             {
-                Console.WriteLine($"{szam++}"); // postfixes értéknövelés
+                case 0: Console.WriteLine("gép: kő"); break;
+                case 1: Console.WriteLine("gép: papír"); break;
+                default: Console.WriteLine("gép: olló"); break;
             }
-
-            // ha postfixesen növelek egy számot kiíratáskor, előbb a régi értéket írja ki, majd
-            // megnöveli, pl Console.WriteLine($"{szam++}");
-
-            // ha prefixesen növelek egy számot kiíratáskor, előbb a megnövelt értéket írja már ki
-            // pl Console.WriteLine($"{++szam}");
-
-            // egyszerre kettő nem lehet (elől-hátul nem égetjük a gyertyát: ++szam++)
-
-            //-------------------------------------------------------------------
-            // a két szélső érték (a,b) között írjuk ki a páros számokat
-            int a,b;
-            Console.WriteLine("adj meg egy számot");
-            a = Convert.ToInt32(Console.ReadLine());
-            Console.WriteLine("adj meg egy b értéket");
-            b = Convert.ToInt32(Console.ReadLine());
-
-            while (a!=b)
+            switch (felhasznalo)
             {
-                a++;
-                if (a % 2 == 0) 
-                {
-                    Console.WriteLine(a);
-                }
+                case 0: Console.WriteLine("felhasznalo: kő"); break;
+                case 1: Console.WriteLine("felhasznalo: papír"); break;
+                default: Console.WriteLine("felhasznalo: olló"); break;
             }
-
-            //--------------------------------------------------------
-            // egy szám számjegyeinek lekérdezése-->kérjük be szövegesen
-            // mert akkor rendelkezésre áll nekünk a string tipusoknál egy olyan
-            // hogy length
-            Console.WriteLine("Adj egy számot");
-            string szam = Console.ReadLine();
-            Console.WriteLine(szam.Length); // 3 számjegyből áll pl a 107
-
-            // írjuk ki a számjegyeit egymás alá
-            Console.WriteLine(szam[0]);
-            Console.WriteLine(szam[1]);
-            Console.WriteLine(szam[2]);
-
-            // ööö de dinamikusan...
-            int i = 0;
-            while (i < szam.Length)
+            //játéklogika
+            if (gep == 0 && felhasznalo == 2 || 
+                gep == 2 && felhasznalo == 1 || 
+                gep == 1 && felhasznalo == 0)
             {
-                Console.WriteLine(szam[i]);
-                i++;
+                Console.WriteLine("A gép győzött!");
             }
-
-            // számítsuk ki az éves középhőmérsékletet, de előtte kérjük be minden hónap átlag hőmérsékletét
-            int honap = 0;
-            double osszHomerseklet = 0;
-            while (honap<12)
+            else if(gep == felhasznalo)
             {
-                Console.Write($"{honap+1}. hónap átlaga: ");
-                double homerseklet = Convert.ToDouble(Console.ReadLine());
-                osszHomerseklet += homerseklet;
-                honap++;
+                Console.WriteLine("Döntetlen!");
             }
-            double atlag = osszHomerseklet / 12;
-            Console.WriteLine($"Éves középhőmérséklet: {atlag:0.00}");
-            
-            // -----------------------------------------------------------------------
-            // validáljunk telefonszámokat, addig kérjük be a felhasználótól telefonszámot, amíg az hibás
-            // ha már valid telefonszámot adott meg a felhasználó, akkor írjuk ki milyen szolgáltatóhoz tartozik
-            // a dupla függőleges vonal '|' a logikai vagy.
-            // a '!=' az a nem egyenlő
-            // a telószám változó string, annak egy elemének a lehivatkozása pl teloszam[0] az karakter típust ad
-            // ezért vetem azokat össze Aposztrófok közötti szám karakterekkel pl teloszam[0]!='0'
-            Console.Write("telószám: ");
-            string teloszam = Console.ReadLine();
-            while (teloszam[0]!='0' || teloszam[1]!='6' || teloszam[3]!='0' || teloszam.Length!=11)
+            else
             {
-                Console.Write("telószám: ");
-                teloszam = Console.ReadLine();
+                Console.WriteLine("A felhasználó nyert!");
             }
-            // egyszerű összehasonlító elágazás
-            // ha if-el lenne megírva ez pl teloszam[2]=='2' -vel lenne megírva 
-            switch (teloszam[2])
-            {
-                case '2':
-                    Console.WriteLine("Yettel");
-                    break;
-                case '3':
-                    Console.WriteLine("Telekom");
-                    break;
-                case '7':
-                    Console.WriteLine("Vodafon");
-                    break;
-            }
-
             Console.ReadKey();
-            
         }
     }
 }
