@@ -5,125 +5,62 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp35
+namespace ConsoleApp34
 {
     class Program
     {
         static void Main(string[] args)
         {
-            // logikai kapuk
-            // és-->&&
-            // vagy-->||
-            Random r = new Random();
-            int a = r.Next(71)+10; //[10,80]
-            int b = r.Next(71)+10; //[10,80]
-            int c = r.Next(71)+10; //[10,80]
-            if (a+b>c && b+c>a && c+a>b)
+            int x, y;
+            Console.Write("x: ");
+            x = Convert.ToInt32(Console.ReadLine());
+            Console.Write("y: ");
+            y = Convert.ToInt32(Console.ReadLine());
+
+            double a1 = 0.7 * Math.Pow(x, 4) + Math.PI * y;
+            double a2 = Math.PI * Math.Pow(y, -4) - Math.Pow(x, 4);
+
+            double b1 = Math.Sqrt(x) + (-2) * (4 * y);
+            double b2 = 0.8 * Math.Pow(Math.Pow(y, 6), 1 / 7.0);
+
+            double c1 = (Math.Pow(x, 6) + Math.Pow(y, 4)) / (y + 1);
+            double c2 = Math.Pow(x, 5) / (0.4 * y * Math.Sqrt(3 + Math.Pow(x, 2)));
+
+            // osztásnál figyelünk! mit mivel osztunk (zárójelezés), illetve az osztás egyik 
+            // tagja double legyen, hogy legyenek tizedeseink, pl 2/6-->0 ami rossz, 
+            // helyette azt érjük el hogy az egyik tag double legyen hogy a 2/6-al 0.333333.. legyen
+            // pl 
+            // 2.0 / 6 vagy 
+            // 2 / 6.0 vagy 
+            // 2.0 / 6.0 vagy 
+            // (double)2 / 6 vagy 
+            // 2 / (double)6 vagy 
+            // Convert.ToDouble(2) / 6 vagy
+            // 2 / Convert.ToDouble(6) vagy
+            // Convert.ToDouble(2) / Convert.ToDouble(6) vagy
+            // (double)2 / Convert.ToDouble(6) vagy
+            // ezek kombinácója!
+            double d1 =(3*x-y)/(double)(x-1);
+            double d2 =Math.Pow(Math.PI, 1.0/y);
+
+            if (a1>a2)
             {
-                Console.WriteLine("szerkeszthető");
+                // kerekítés két tizedes jegyre: {valtozo:0.00} vagy {Math.Round(valtozo, 2)}
+                Console.WriteLine($"{a1:0.00} nagyobb, mint {a2:0.00}");
+                Console.WriteLine($"\tEnnyivel: {Math.Round(a1-a2,2)}");
+            }
+            else if (a1<a2)
+            {
+                Console.WriteLine($"{Math.Round(a2,2)} nagyobb, mint {a1:0.00}");
+                Console.WriteLine($"\tEnnyivel: {(a2 - a1):0.00)}");
             }
             else
             {
-                Console.WriteLine("nem szerkeszthető");
+                Console.WriteLine("Egyforma");
             }
 
-            //---------------------------------------------------
-            // generáljunk egy számot [1,110] és döntsük el, hogy 
-            // vásárolhat az emberünk legót
+            // innen csak az if, else-if, else csak ctrl+c és ctrl+v.. csak más változókkal
 
-            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~");
-
-            Random r2 = new Random();
-            int kor= r2.Next(110) + 1; //[1,110]
-
-            if(kor>=6 && kor <= 99)
-            {
-                Console.WriteLine("megveheted a legot");
-            }
-            else if (kor>99)
-            {
-                Console.WriteLine("túl öreg vagy hozzá");
-            }
-            else
-            {
-                Console.WriteLine("te túl fiatal vagy!");
-            }
-
-            // ----------------------------------------------------------
-
-            // hármas operátor
-            // a hármas operátorral rövidíthető a kód
-            // abszolút érték, [-100, 100]
-
-            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~");
-
-            Random r3 = new Random();
-            int x= r3.Next(201) - 100;
-            // eredeti szám pl -4
-            Console.WriteLine(x);
-
-            // 1.0
-            if (x<0)
-            {
-                Console.WriteLine(x*-1); // a -4ből 4-es lesz
-            }
-            else
-            {
-                Console.WriteLine(x); // a 4ből 4 lesz
-            }
-            
-            // 2.0
-            // ha az if vagy az else egy  valamit csinál a blokkon belül
-            // akkor az a blokk {} elhagyható!
-            if (x < 0) Console.WriteLine(x*-1);
-            else Console.WriteLine(x);
-
-            // 3.0 <-- hármas operátor
-            Console.WriteLine((x < 0) ? x * -1 : x);
-
-            //------------------------------------------------------------
-
-            // switch
-            // a switch csak összehasonlításra használható amikor if-ben ==-et használnánk
-
-            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-
-            // kő-papír
-            Random r4 = new Random();
-            int gep = r4.Next(3); // [0,2]
-            // 0 == kő, 1 == papír, 2 == olló
-            Console.WriteLine("Válaszd ki a fegyvered!");
-            Console.WriteLine("0 == kő, 1 == papír, 2 == olló");
-            Console.Write("Szám: ");
-            int felhasznalo = Convert.ToInt32(Console.ReadLine());
-            // kiírjuk ki mit választott
-            switch (gep)
-            {
-                case 0: Console.WriteLine("gép: kő"); break;
-                case 1: Console.WriteLine("gép: papír"); break;
-                default: Console.WriteLine("gép: olló"); break;
-            }
-            switch (felhasznalo)
-            {
-                case 0: Console.WriteLine("felhasznalo: kő"); break;
-                case 1: Console.WriteLine("felhasznalo: papír"); break;
-                default: Console.WriteLine("felhasznalo: olló"); break;
-            }
-            //játéklogika
-            if (gep == 0 && felhasznalo == 2 || 
-                gep == 2 && felhasznalo == 1 || 
-                gep == 1 && felhasznalo == 0)
-            {
-                Console.WriteLine("A gép győzött!");
-            }
-            else if(gep == felhasznalo)
-            {
-                Console.WriteLine("Döntetlen!");
-            }
-            else
-            {
-                Console.WriteLine("A felhasználó nyert!");
-            }
             Console.ReadKey();
         }
     }
