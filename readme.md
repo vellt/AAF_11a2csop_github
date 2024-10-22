@@ -5,63 +5,148 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp34
+namespace ConsoleApp44
 {
     class Program
     {
         static void Main(string[] args)
         {
-            int x, y;
-            Console.Write("x: ");
-            x = Convert.ToInt32(Console.ReadLine());
-            Console.Write("y: ");
-            y = Convert.ToInt32(Console.ReadLine());
-
-            double a1 = 0.7 * Math.Pow(x, 4) + Math.PI * y;
-            double a2 = Math.PI * Math.Pow(y, -4) - Math.Pow(x, 4);
-
-            double b1 = Math.Sqrt(x) + (-2) * (4 * y);
-            double b2 = 0.8 * Math.Pow(Math.Pow(y, 6), 1 / 7.0);
-
-            double c1 = (Math.Pow(x, 6) + Math.Pow(y, 4)) / (y + 1);
-            double c2 = Math.Pow(x, 5) / (0.4 * y * Math.Sqrt(3 + Math.Pow(x, 2)));
-
-            // osztásnál figyelünk! mit mivel osztunk (zárójelezés), illetve az osztás egyik 
-            // tagja double legyen, hogy legyenek tizedeseink, pl 2/6-->0 ami rossz, 
-            // helyette azt érjük el hogy az egyik tag double legyen hogy a 2/6-al 0.333333.. legyen
-            // pl 
-            // 2.0 / 6 vagy 
-            // 2 / 6.0 vagy 
-            // 2.0 / 6.0 vagy 
-            // (double)2 / 6 vagy 
-            // 2 / (double)6 vagy 
-            // Convert.ToDouble(2) / 6 vagy
-            // 2 / Convert.ToDouble(6) vagy
-            // Convert.ToDouble(2) / Convert.ToDouble(6) vagy
-            // (double)2 / Convert.ToDouble(6) vagy
-            // ezek kombinácója!
-            double d1 =(3*x-y)/(double)(x-1);
-            double d2 =Math.Pow(Math.PI, 1.0/y);
-
-            if (a1>a2)
-            {
-                // kerekítés két tizedes jegyre: {valtozo:0.00} vagy {Math.Round(valtozo, 2)}
-                Console.WriteLine($"{a1:0.00} nagyobb, mint {a2:0.00}");
-                Console.WriteLine($"\tEnnyivel: {Math.Round(a1-a2,2)}");
-            }
-            else if (a1<a2)
-            {
-                Console.WriteLine($"{Math.Round(a2,2)} nagyobb, mint {a1:0.00}");
-                Console.WriteLine($"\tEnnyivel: {(a2 - a1):0.00)}");
-            }
-            else
-            {
-                Console.WriteLine("Egyforma");
-            }
-
-            // innen csak az if, else-if, else csak ctrl+c és ctrl+v.. csak más változókkal
+            Bevezeto();
+            GyakFeladat();
 
             Console.ReadKey();
+        }
+
+        private static void GyakFeladat()
+        {
+            // 1-10ig egymás mellé szóközzel elválasztva
+            for (int i = 0; i < 10; i++)
+            {
+                Console.Write($"{i+1} ");
+            }
+            Console.WriteLine();
+
+            // u.e. while ciklussal
+            int i2 = 1;
+            while (i2 <= 10)
+            {
+                Console.Write($"{i2} ");
+                i2++;
+            }
+            Console.WriteLine();
+
+            //--------------------------------------------
+
+            // 10-1ig egymás mellé szóközökkel elválasztva
+            for (int i = 10; i > 0; i--)
+            {
+                Console.Write($"{i} ");
+            }
+            Console.WriteLine();
+
+            // u.e. while ciklussal
+            int szamok = 10;
+            while (szamok != 0)
+            {
+                Console.Write($"{szamok--} ");
+            }
+            Console.WriteLine();
+
+            //--------------------------------------------
+
+            // 50-től 20ig minden 5-el osztható számot!
+            szamok = 50;
+            while (szamok != 19)
+            {
+                if(szamok % 5 == 0)
+                {
+                    Console.Write($"{szamok} ");
+                }
+                szamok--;
+            }
+            Console.WriteLine();
+
+            // u.e. for ciklussal
+            for (int i = 50; i >= 20; i--)
+            {
+                if (i%5==0)
+                {
+                    Console.Write($" {i}");
+                }
+            }
+            Console.WriteLine();
+
+            //--------------------------------------------
+
+            // minden páros szám [40,60]
+            for (int i = 40; i < 61; i++)
+            {
+                if (i%2==0)
+                {
+                    Console.WriteLine(i);
+                }
+            }
+
+            //--------------------------------------------
+
+            // minden páratlan 10-50ig
+            int szam = 10;
+            while (szam <= 50)
+            {
+                if (szam % 2 != 0)
+                {
+                    Console.Write($"{szam} ");
+                }
+                szam++;
+            }
+            Console.WriteLine();
+
+            // u.e. for ciklussal
+            for (int i = 10; i < 51; i++)
+            {
+                if (i % 2 != 0)
+                {
+                    Console.Write($"{i} ");
+                }
+                
+            }
+ 
+
+        }
+
+        private static void Bevezeto()
+        {
+            // for ciklus-->Előírt lépésszámú ciklus 
+            // do-while-->Hátultesztelős ciklus 
+            // while-->Elöltesztelős ciklus 
+
+
+            // írd ki 10x a nevet amit bekértél
+
+            Console.Write("Add meg a neved: ");
+            string nev = Console.ReadLine();
+
+            // for ciklus
+            for (int i = 0; i < 10; i++)
+            {
+                Console.WriteLine(nev);
+            }
+
+            // while - amíg
+            int index = 10;
+            while (index < 10)
+            {
+                Console.WriteLine(nev);
+                index++;
+            }
+
+            // do-while
+            int index2 = 10;
+            do
+            {
+                Console.WriteLine(nev);
+                index2++;
+            } while (index2 < 10);
         }
     }
 }
