@@ -5,155 +5,193 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp47
+namespace ConsoleApp49
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Bemelegito();
-            OnalloFeladatok();
+            // 1 --------------------------------------------------------
+            Console.WriteLine("Adj meg egy számot és kiírom a 10szeresét");
+            int a = Convert.ToInt32(Console.ReadLine());
+            Console.WriteLine(a * 10);
             
-            // Kovács Szabolcs Itt járt És Azt mondja hogy Kachao O.o
-            Console.ReadKey();
-        }
+            // 2 --------------------------------------------------------
+            Console.Write("Add meg az egyik számot: "); // Vajon mi a külöbség a Write és a WriteLine között??
+            int sz1 = Convert.ToInt32(Console.ReadLine());
 
-        private static void OnalloFeladatok()
-        {
-            // Készítsünk egy programot, amely 15db *-ot ír ki a képernyőre egy sorba!
-            string star = "*";
-            for (int i = 0; i < 15; i++)
+            Console.Write("Add meg a másik számot: ");
+            int sz2 = Convert.ToInt32(Console.ReadLine());
+
+            if (sz1 > sz2)
             {
-                Console.Write($"{star} ");
+                Console.WriteLine("Az első szám a nagyobb");
             }
-            Console.WriteLine();
-
-
-            // Írassa ki a számokat 1-től 20ig és mellé a négyzetüket is.
-            for (int i = 1; i <= 20; i++)
+            else if (sz1 == sz2) // két egyenlőség jel összehasonlítás, egy egyenlőség jel értékadás
             {
-                Console.Write($"{i}-->{i * i} ");
+                Console.WriteLine("Egyenlőek");
             }
-            Console.WriteLine();
+            else
+            {
+                Console.WriteLine("A második szám a nagyobb");
+            }
+            
+            // 3 --------------------------------------------------------
+            Console.WriteLine("Add meg a születési évedet:");
+            int ev = Convert.ToInt32(Console.ReadLine());
+            int kor = DateTime.Now.Year - ev; // 2024-et helyettesítettük a DateTime.Now.Year-el
+            Console.WriteLine($"Te {kor} éves vagy.");
 
+            if (kor<18) // 18 alatti
+            {
+                Console.WriteLine("Te még nem érettségiztél.");
+            }
+            else // 18 vagy feletti
+            {
+                Console.WriteLine("Te már érettségiztél.");
+            }
+            
+            // 4 --------------------------------------------------------
+            Console.WriteLine("Add meg a jelszót");
+            string jelszo = Console.ReadLine(); // egy egyenlőség jel az értékadás
 
-            // Éves középhőmérséklet kiszámítása ciklussal
+            if (jelszo == "jelszo123") // két egyenlőség jel összehasonlítás
+            {
+                Console.WriteLine("Helyes");
+            }
+            else
+            {
+                Console.WriteLine("Helytelen");
+            }
+            
+            // 5 --------------------------------------------------------
+            Console.WriteLine("add meg a jelszot: ");
+            string jelszo = Console.ReadLine();
+            int hossz = jelszo.Length; // bele rakjuk a hossz változóba a jelszó karakterhosszát
+        
+            if (hossz>10) //a hossz változó 10től nagyobb
+            {
+                Console.WriteLine("eros jelszo!");
+            }
+            else if (hossz<=10 && hossz >= 6) // ha a hossz változó 6 vagy a feletti, de 10 vagy az alatti szám
+            {
+                Console.WriteLine("közepes jelszo"); 
+            }
+            else
+            {
+                Console.WriteLine("gyenge jelszo"); // minden más eset, pl 1,2,3,4,5
+            }
+            
+            // 6 --------------------------------------------------------
+            Console.WriteLine("Add meg hány celsius fok van");
+            int C= Convert.ToInt32(Console.ReadLine());
+
+            int F = Convert.ToInt32(C*9/5.0+32); // osztási probléma --> osztáskor egyik tagja az osztásnak double legyen!
+            Console.WriteLine($"F={F}");
+
+            // 7 --------------------------------------------------------
+            Console.WriteLine("Add meg az osztályzatot");
+            int szam = Convert.ToInt32(Console.ReadLine());
+
+            switch (szam)
+            {
+                case 1: Console.WriteLine("elégtelen"); break;
+                case 2: Console.WriteLine("elégséges"); break;
+                case 3: Console.WriteLine("közepes"); break;
+                case 4: Console.WriteLine("jó"); break;
+                case 5: Console.WriteLine("jeles"); break;
+                default: Console.WriteLine("Ilyen osztályzat nincsen"); break; // minden más eset
+            }
+
+            // 8 --------------------------------------------------------
+            Console.WriteLine("Adj meg egy szamot: ");
+            int szam = Convert.ToInt32(Console.ReadLine());
+
+            if (szam % 2 == 0) // a számot, ha modulózom 2-vel és az 0-t ad vissza, akkor az páros
+            {
+                Console.WriteLine("paros");
+            }
+            else
+            {
+                Console.WriteLine("paratlan"); // egyébként nem..
+            }
+            
+            // 9 --------------------------------------------------------
+            Console.WriteLine("Dobtam egy 7-es kockával, tippeld meg hogy hanyast dobtam.");
+            int tipp = Convert.ToInt32(Console.ReadLine());
+
             Random r = new Random();
-            double szam = 0;
-            for (int i = 0; i < 12; i++)
+            int kocka = r.Next(7)+1; //[1,7]
+            if (tipp == kocka)  // a tippben az van amennyi a kocka dobása
             {
-                // ezt elegendő csak egy random egész számmal is, pl 0-20 között
-                // viszont itt tiezdesre is gondolt Dominik:
-                szam += r.Next(0, 21); // az egész szám pl 6
-                szam += r.Next(0, 101) / 100.0; // a tizedes pl 0.23
-                
+                Console.WriteLine($"A szám amit dobtam: {kocka}. Gratulálok eltaláltad!");
             }
-            szam = szam / 12.0; // átlag számítás
-            Console.WriteLine(Math.Round(szam, 2));
-            Console.WriteLine();
-
-
-            //Bekér egy számot és kiírja az összes osztóját!
-            Console.Write("Adj meg egy számot: ");
-            int x = Convert.ToInt32(Console.ReadLine());
-            int db = 1;
-            while (db != x + 1)
+            else if (tipp > 7) // ha a tipp nagyobb mint 7
             {
-                if (x % db == 0)
-                {
-                    Console.WriteLine($"{db} osztója az {x}-nak");
-                }
-                db++;
+                Console.WriteLine("7-nél nagyobb számot nem dobhattam.");
             }
-            Console.WriteLine();
-
-
-            // Állítsunk elő véletlenszerűen 40 egész számot [-100,100]-ból, és írjuk ki a képernyőre egymás mellé 6 karakternyi helyet lefoglalva, de egy sorban csak 8 szám legyen! A kiíratás végén adjuk meg hány db pozitív szám van!
-            int aktSzam;
-            for (int i = 0; i < 40; i++)
+            else if (tipp < 1) // ha a tippem 1től kisebb
             {
-                if (i % 8 == 0) Console.Write("\n");
-                aktSzam = r.Next(201) - 100;
-                Console.Write($"{aktSzam,-6}");
+                Console.WriteLine("1-nél kisebb számot nem dobhattam.");
             }
-            Console.Clear();
-
-
-            // Írjunk egy hatvány számoló programot. Kérjünk be két egész számot (a,n) a billentyűzetről és írjuk ki az a n. hatványát.
-            int a, n;
-            Console.WriteLine("Add meg az n-t majd annak a hatványát az a-t értékét");
-            a = Convert.ToInt32(Console.ReadLine());
-            n = Convert.ToInt32(Console.ReadLine());
-            int pow = 1;
-            for (int i = 0; i < n; i++)
+            else // 1-7között tippeltem, de nem találtam el a kockadobást
             {
-                pow *= a;
-            }
-            Console.WriteLine(pow);
-
-        }
-
-        private static void Bemelegito()
-        {
-            // írj ki 10 random számot [-100, 50] között
-            Random r = new Random();
-            for (int i = 0; i < 10; i++)
-            {
-                int randomSzam = r.Next(151) - 100;
-                Console.WriteLine(randomSzam);
+                Console.WriteLine($"A szám amit dobtam: {kocka}. Sajnos nem talált!");
             }
 
-            int index = 0;
-            while (index < 10)
+            // 10 --------------------------------------------------------
+            Console.WriteLine("Adj meg egy számot");
+            int nap = Convert.ToInt32(Console.ReadLine());
+
+            switch (nap)
             {
-                int randomSzam = r.Next(151) - 100;
-                Console.WriteLine(randomSzam);
-                index++;
+                case 1: Console.WriteLine("hetfo"); break;
+                case 2: Console.WriteLine("kedd"); break;
+                case 3: Console.WriteLine("szerda"); break;
+                case 4: Console.WriteLine("csutortok"); break;
+                case 5: Console.WriteLine("pentek"); break;
+                case 6: Console.WriteLine("szombat"); break;
+                case 7: Console.WriteLine("vasarnap"); break;
+                default: Console.WriteLine("1-7ig várok számot"); break; // miden más eset
+            }
+            
+            // 11 --------------------------------------------------------
+            // !!!!!!!!!!!!!!!!!osztási probléma bemutatása!!!!!!!!!!!!!!!!!!!
+            Console.WriteLine(9/5); //-->1-et fog kiírni (mert az osztás mind2 tagja int!!!!), pedig 1,8-at kellene
+            // ha már az osztás egyik tagja double, akkor jó eredményt mutat!
+            // ÉRJÜK EL VALAHOGY, HOGY AZ EGYIK TAG DOUBLE LEGYEN.
+            // TÖBB MÓDSZER IS VAN, PL
+            Console.WriteLine(9/5.0); // 1,8
+            Console.WriteLine(9/Convert.ToDouble(5)); // 1,8
+            Console.WriteLine(9/(double)5); // 1,8
+            
+            // EZÉRT OSZTÁSKOR ÜGYELJÜNK, HOGY AZ OSZTÁS (LEGALÁBB) EGYIK TAGJA LEGYEN DOUBLE TÍPUSÚ!!!
+            // EBBEN A FELADATBAN IS, MINT A CELSIUS-OSBAN .... VAN OSZTÁS...!
+            
+            Console.WriteLine("Adj meg egy számot");
+            int sz1 = Convert.ToInt32(Console.ReadLine()); // STRING TO INT
+
+            Console.WriteLine("Adj meg egy számot");
+            int sz2 = Convert.ToInt32(Console.ReadLine()); // STRING TO INT
+
+            Console.WriteLine("Adj meg egy műveletet");
+            char muvelet = Convert.ToChar(Console.ReadLine()); // STRING TO CHAR
+            // A CHAR EGY KARAKTER TÍPUS, KONKRÉTAN EGY KARAKTERT TUD TÁROLNI
+            // PL 'A' 'B' '+' '2' '$' STB
+            // ITT NEM ""(MACSKAKÖRÖM)-T HASZNÁLUNK HANEM ''(APOSZTRÓF)-T
+            // 'A'-->CHAR TÍPUS
+            // "A"--> STRING TÍPUS
+
+            switch (muvelet)
+            {
+                case '+': Console.WriteLine(sz1 + sz2); break;
+                case '-': Console.WriteLine(sz1 - sz2); break;
+                case '*': Console.WriteLine(sz1 * sz2); break;
+                case '/': Console.WriteLine(Math.Round(sz1 / Convert.ToDouble(sz2), 2)); break; // ÜGYELTÜNK AZ OSZTÁSRA, és kerekítettünk: Math.Round(double érték, kerekítés mértéke)
+                case '%': Console.WriteLine(sz1 % sz2); break;
             }
 
-            Console.WriteLine();
 
-            // írj ki 10 [-100, 100] közötti véletlen szám absz értékét
-            for (int i = 0; i < 10; i++)
-            {
-                int randomSzam = r.Next(201) - 100;
-                Console.WriteLine(Math.Abs(randomSzam));
-            }
-
-            // 10 szám [-10, 50] 
-            // számold meg mennyi poz. szám van
-            // --//-- mennyi negatív szám
-            // --//-- mennyi nulla
-            // --//-- mennyi páros
-            // --//-- mennyi páratlan
-            // --//-- mennyi 6-nál nagyobb
-            // --//-- mennyi az átlaguk, 2 tizedesen kiírva
-            int pozSzam = 0;
-            int negSzam = 0;
-            int nulla = 0;
-            int paros = 0;
-            int paratlan = 0;
-            int hattolNagyobb = 0;
-            int osszes = 0;
-            for (int i = 0; i < 10; i++)
-            {
-                int randomSzam = r.Next(61) - 10; //[-10, 50] 
-                if (randomSzam > 0) pozSzam++;
-                if (randomSzam < 0) negSzam++;
-                if (randomSzam == 0) nulla++;
-                if (randomSzam % 2 == 0) paros++;
-                if (randomSzam % 2 != 0) paratlan++;
-                if (randomSzam > 6) hattolNagyobb++;
-                osszes += randomSzam;
-            }
-            double atlag = osszes / 10.0;
-            Console.WriteLine(pozSzam);
-            Console.WriteLine(negSzam);
-            Console.WriteLine(nulla);
-            Console.WriteLine(paros);
-            Console.WriteLine(paratlan);
-            Console.WriteLine(hattolNagyobb);
-            Console.WriteLine(Math.Round(atlag, 2));
         }
     }
 }
