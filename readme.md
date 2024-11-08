@@ -11,141 +11,108 @@ namespace ConsoleApp53
     {
         static void Main(string[] args)
         {
-            int kezdoErtek, hossz;
+            Random r = new Random(); // ezt az r randomot használom fel az összes feladatban
 
-            Console.WriteLine("-------------------------------------------");
-
-            Console.Write("Kezdőérték: ");
-            kezdoErtek = Convert.ToInt32(Console.ReadLine());
-            Console.Write("hossz: ");
-            hossz = Convert.ToInt32(Console.ReadLine());
-            
-            for (int i = 0; i < hossz; i++)
+            //1
+            for (int i = 0; i < 20; i++)
             {
-                Console.Write($"{kezdoErtek} ");
-                kezdoErtek++;
-            }
-
-            Console.WriteLine("-------------------------------------------");
-
-            Console.Write("Kezdőérték: ");
-            kezdoErtek = Convert.ToInt32(Console.ReadLine());
-            Console.Write("hossz: ");
-            hossz = Convert.ToInt32(Console.ReadLine());
-
-            for (int i = 0; i < hossz * 2; i++)
-            {
-                if (kezdoErtek % 2 == 0)
+                int randomSzam = r.Next(71)-50;
+                Console.Write($"{randomSzam} ");
+                if (i == 9)
                 {
-                    Console.Write($"{kezdoErtek} ");
-
+                    Console.WriteLine();
                 }
-                kezdoErtek++;
             }
 
-            Console.WriteLine("-------------------------------------------");
-
-            Console.Write("Kezdőérték: ");
-            kezdoErtek = Convert.ToInt32(Console.ReadLine());
-            Console.Write("hossz: ");
-            hossz = Convert.ToInt32(Console.ReadLine());
-
-            for (int i = 0; i < hossz *2; i++)
+            //2.
+            Console.WriteLine();
+            for (int i = 0; i < 20; i++)
             {
-                if (kezdoErtek % 2 != 0)
+                int randomSzam = r.Next(71) - 50;
+                Console.Write($"{randomSzam} ");
+                if (i == 4 || i==9 || i==14)
                 {
-                    Console.Write($"{kezdoErtek} ");
-
+                    Console.WriteLine();
                 }
-                kezdoErtek++;
             }
 
-            Console.WriteLine("-------------------------------------------");
-
-            Console.Write("Kezdőérték: ");
-            kezdoErtek = Convert.ToInt32(Console.ReadLine());
-            Console.Write("hossz: ");
-            hossz = Convert.ToInt32(Console.ReadLine());
-
-            for (int i = 0; i < hossz; i++)
+            //3.
+            Console.WriteLine();
+            bool bentamaradasiFeltetel = true;
+            while (bentamaradasiFeltetel)
             {
-                Console.WriteLine($"{Math.Pow(kezdoErtek, 2)}");
-                kezdoErtek++;
-            }
-            
-            Console.WriteLine("-----------");
-            Console.Write("Kezdőérték: ");
-            kezdoErtek = Convert.ToInt32(Console.ReadLine());
-            Console.Write("hossz: ");
+                int randomSzam = r.Next(201) - 100; //[-100,100]
+                Console.Write($"{randomSzam} ");
 
-            hossz = Convert.ToInt32(Console.ReadLine());
-            for (int i = 0; i < hossz; i++)
-            {
-                Console.WriteLine($"{Math.Pow(kezdoErtek, 3)}");
-                kezdoErtek++;
-            }
-
-            Console.WriteLine("-----------");
-            Console.Write("Kezdőérték: ");
-            kezdoErtek = Convert.ToInt32(Console.ReadLine());
-            Console.Write("hossz: ");
-
-            hossz = Convert.ToInt32(Console.ReadLine());
-
-            for (int i = 0; i < hossz; i++)
-            {
-                Console.Write($"{kezdoErtek} ");
-                kezdoErtek += 4;
-            }
-            
-            Console.WriteLine("-----------");
-            Console.Write("Kezdőérték: ");
-            kezdoErtek = Convert.ToInt32(Console.ReadLine());
-            Console.Write("hossz: ");
-            hossz = Convert.ToInt32(Console.ReadLine());
-            for (int i = 0; i < hossz; i++)
-            {
-                Console.WriteLine($"{kezdoErtek}");
-                kezdoErtek *= 2;
-            }
-            
-    
-            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            Console.Write("Kezdőérték: ");
-            kezdoErtek = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Hossz: ");
-            hossz = Convert.ToInt32(Console.ReadLine());
-            for (int i = 0; i < hossz; i++)
-            {
-                int negalt = kezdoErtek + i;
-
-                if (i % 2 != 0)
+                if (randomSzam%3==0)
                 {
-                    negalt = -negalt;
+                    bentamaradasiFeltetel = false;
                 }
-                Console.Write($"{negalt}, ");
             }
 
-            Console.WriteLine("~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            Console.Write("Kezdőérték: ");
-            kezdoErtek = Convert.ToInt32(Console.ReadLine());
-            Console.Write("Hossz: ");
-            hossz = Convert.ToInt32(Console.ReadLine());
-
-            for (int i = 0; i < hossz; i++)
+            //4.
+            Console.WriteLine();
+            Console.Write("Szam: ");
+            int szam1 = Convert.ToInt32(Console.ReadLine());
+            for (int i = 0; i <=szam1; i++)
             {
-                int fakt = 1;
-                for (int j = 1; j <= kezdoErtek; j++)
-                {
-                    fakt *= j;
-                }
-                Console.Write($"{fakt}, ");
-                kezdoErtek++;
+                Console.Write($"{i} ");
             }
 
+            //5.
+            Console.WriteLine();
+            int a=0, b=0, c=0, d=0, e=0;
+            for (int i = 0; i < 20; i++)
+            {
+                int randomSzam = r.Next(61) +10; //[10,70]
+                if (randomSzam%3==0 && randomSzam%5==0)
+                {
+                    a++;
+                }
+                if (randomSzam%2==0 || randomSzam % 5 == 0)
+                {
+                    b++;
+                }
+                if (randomSzam>10 && randomSzam<30 && randomSzam % 2 !=0)
+                {
+                    c++;
+                }
+                if (randomSzam>6 && randomSzam<10)
+                {
+                    d++;
+                }
+                if (!(randomSzam>5 && randomSzam%2==0))
+                {
+                    e++;
+                }
+            }
+            Console.WriteLine(a);
+            Console.WriteLine(b);
+            Console.WriteLine(c);
+            Console.WriteLine(d);
+            Console.WriteLine(e);
+
+            // 6
+            bool igaz = true;
+            int osszeg = 0;
+            int db = 0;
+            while (igaz)
+            {
+                int random = r.Next(117) - 50; //[-50, 66]
+                if (random==0) // kilépéshez
+                {
+                    igaz = false;
+                }
+                osszeg += random; //összeadom a számokat
+                db++;
+            }
+            double atlag = osszeg / Convert.ToDouble(db);
+            Console.WriteLine(Math.Round(atlag,2));
+            
             Console.ReadKey();
         }
     }
 }
+
 
 ```
