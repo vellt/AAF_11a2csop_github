@@ -5,114 +5,89 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ConsoleApp53
+namespace ConsoleApp60
 {
     class Program
     {
         static void Main(string[] args)
         {
-            Random r = new Random(); // ezt az r randomot használom fel az összes feladatban
-
-            //1
-            for (int i = 0; i < 20; i++)
+            Random r = new Random();
+            int a = 0; // páros számok db
+            int b = 0; // 3-mal oszthato db
+            int c = 0; // páros de nem osztható 4-gyel
+            int d = 0; // páratélan, de nem osztható 5-el
+            for (int i = 0; i < 5; i++)
             {
-                int randomSzam = r.Next(71)-50;
-                Console.Write($"{randomSzam} ");
-                if (i == 9)
-                {
-                    Console.WriteLine();
-                }
-            }
-
-            //2.
-            Console.WriteLine();
-            for (int i = 0; i < 20; i++)
-            {
-                int randomSzam = r.Next(71) - 50;
-                Console.Write($"{randomSzam} ");
-                if (i == 4 || i==9 || i==14)
-                {
-                    Console.WriteLine();
-                }
-            }
-
-            //3.
-            Console.WriteLine();
-            bool bentamaradasiFeltetel = true;
-            while (bentamaradasiFeltetel)
-            {
-                int randomSzam = r.Next(201) - 100; //[-100,100]
-                Console.Write($"{randomSzam} ");
-
-                if (randomSzam%3==0)
-                {
-                    bentamaradasiFeltetel = false;
-                }
-            }
-
-            //4.
-            Console.WriteLine();
-            Console.Write("Szam: ");
-            int szam1 = Convert.ToInt32(Console.ReadLine());
-            for (int i = 0; i <=szam1; i++)
-            {
-                Console.Write($"{i} ");
-            }
-
-            //5.
-            Console.WriteLine();
-            int a=0, b=0, c=0, d=0, e=0;
-            for (int i = 0; i < 20; i++)
-            {
-                int randomSzam = r.Next(61) +10; //[10,70]
-                if (randomSzam%3==0 && randomSzam%5==0)
+                int szam= r.Next(25)+64; //[64,89]
+                if (szam%2==0)
                 {
                     a++;
                 }
-                if (randomSzam%2==0 || randomSzam % 5 == 0)
+                if (szam%3==0)
                 {
                     b++;
                 }
-                if (randomSzam>10 && randomSzam<30 && randomSzam % 2 !=0)
+                if (szam%2==0 && szam%4!=0)
                 {
                     c++;
                 }
-                if (randomSzam>6 && randomSzam<10)
+                if (szam % 2 != 0 && szam % 5 != 0)
                 {
+                    //d-=-1; // d++ d=d-(-1); // d=d+1
                     d++;
-                }
-                if (!(randomSzam>5 && randomSzam%2==0))
-                {
-                    e++;
                 }
             }
             Console.WriteLine(a);
             Console.WriteLine(b);
             Console.WriteLine(c);
             Console.WriteLine(d);
-            Console.WriteLine(e);
 
-            // 6
-            bool igaz = true;
+            //-----------------------------------------------------------
+
+            Random r2 = new Random();
+            int karakter = r2.Next(3); //[0,2]
+            switch (karakter)
+            {
+                case 0: Console.Write("Az űrhajós és a "); break;
+                case 1: Console.Write("A tengerész és a "); break;
+                case 2: Console.Write("A félszemű fogtündér és a "); break;
+            }
+            int allat= r2.Next(3); //[0,2]
+            switch (allat)
+            {
+                case 0: Console.Write("delfin "); break;
+                case 1: Console.Write("sas "); break;
+                case 2: Console.Write("medve "); break;
+            }
+            int esemeny = r2.Next(3); //[0,2]
+            switch (esemeny)
+            {
+                case 0: Console.WriteLine("holdbázist épít."); break;
+                case 1: Console.WriteLine("kincset talál."); break;
+                case 2: Console.WriteLine("megszökik a börtönből."); break;
+            }
+
+            //----------------------------------------
+            bool bentmaradasiFeltetel = true;
             int osszeg = 0;
             int db = 0;
-            while (igaz)
+            while (bentmaradasiFeltetel)
             {
-                int random = r.Next(117) - 50; //[-50, 66]
-                if (random==0) // kilépéshez
-                {
-                    igaz = false;
-                }
-                osszeg += random; //összeadom a számokat
+                int szam = Convert.ToInt32(Console.ReadLine());
+                osszeg += szam;
                 db++;
+                double atlag = osszeg / (double)db;
+                if (atlag>50)
+                {
+                    bentmaradasiFeltetel = false;
+                }
             }
-            double atlag = osszeg / Convert.ToDouble(db);
-            Console.WriteLine(Math.Round(atlag,2));
-            
+            double atlag2 = osszeg / (double)db;
+            Console.WriteLine(atlag2);
+
             Console.ReadKey();
         }
     }
 }
-
 
 ```
