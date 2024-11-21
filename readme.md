@@ -65,7 +65,7 @@ namespace ConsoleApp64
             // a fentebbi 3-as le lett a for ciklusban cserélve a tomb.lenght-re
             for (int i = 0; i < tomb.Length; i++)
             {
-                tomb[i] = r.Next(23) + 60;
+                tomb[i] = r.Next(23) + 60; // tomb[0], tomb[1], tomb[2]
             }
 
             //---------------------------------------------
